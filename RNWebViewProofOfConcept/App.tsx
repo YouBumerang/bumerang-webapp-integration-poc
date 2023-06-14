@@ -47,7 +47,7 @@ function App(): JSX.Element {
             </View>
             <WebView
               onMessage={event => {
-                console.log(event.nativeEvent.data);
+                console.log(event);
                 setShowWebView(false);
               }}
               source={{
