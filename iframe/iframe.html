@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <script>
+      window.onload = () => {
+        const button = document.querySelector("#button");
+        button.addEventListener("click", () => {
+          document.querySelector("#title").innerHTML = "Clicked!";
+          window.crossOriginIsolated = true;
+          const origin = document.querySelector("#bumerang");
+          window.origin.postMessage("Mensaje recibido", "*");
+        });
+      };
+    </script>
+  </head>
+  <body>
+    <h1 id="title">Hola</h1>
+    <button id="button">Post Message</button>
+  </body>
+</html>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Bumerang webapp iframe test</title>
+    <title>Bumerang webapp redirection test</title>
     <script>
       window.onload = () => {
         console.log("Loaded");
@@ -22,8 +22,8 @@
     </script>
   </head>
   <body>
-    <h1>Bumerang iframe test</h1>
-    <p>User id received from postmessage: <span id="userid">---</span></p>
+    <h1>Bumerang redirection test</h1>
+    <p>User id received from URL: <span id="userid">---</span></p>
     <p>
       <iframe id="bumerang" src="./iframe.html" height="800" width="400" />
     </p>
