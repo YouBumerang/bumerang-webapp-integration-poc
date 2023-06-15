@@ -1,12 +1,21 @@
 import UIKit
 import WebKit
+
+struct EventObject {
+    let event: String
+    let value: String
+}
+
 class ViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler {
     var webView: WKWebView!
     @IBOutlet weak var titleLabel: UILabel!
         func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-            if let messageBody = message.body as? String {
-                print("Mensaje recibido: \(messageBody)")
-                titleLabel.text = messageBody
+           
+            print(message.body)
+           
+            if let messageBody = (message.body as? EventObject)  {
+                print("Mensaje recibido: \(messageBody.value)")
+                titleLabel.text = messageBody.value
                 closeWebView()
             }
         }
@@ -96,7 +105,11 @@ class ViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, WKSc
 
                 
         """
-        webView.loadHTMLString(htmlString, baseURL: nil)
+        
+        let myURL = URL(string:"http://localhost:3000/test")
+        let myRequest = URLRequest(url: myURL!)
+        webView.load(myRequest)
+        
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
