@@ -13,6 +13,67 @@ import {
 import {WebView} from 'react-native-webview';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
+const web = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <style>
+                /* Apply button styles */
+                .apple-button {
+                    width: 70vw;
+                    height: 5vh;
+                    border-radius: 8px;
+                    display: inline-block;
+                    padding: 10px 20px;
+                    background-color: #000;
+                    color: #fff;
+                    border-radius: 5px;
+                    border: none;
+                    text-align: center;
+                    text-decoration: none;
+                    font-size: 40px;
+                    cursor: pointer;
+                    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+                    transition: background-color 0.3s ease;
+                }
+        
+                h1 {
+                    
+                    font-size: 48px;
+                }
+
+                .apple-button:hover {
+                    background-color: #222;
+                }
+
+                .apple-button:active {
+                    background-color: #444;
+                }
+
+                /* Center button horizontally */
+                body {
+                    font-family: 'Arial', sans-serif;
+                    font-weight: bold;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100vh;
+                }
+            </style>
+        </head>
+        <body>
+        <h1>Swift WebView Proof of Concept</h1>
+        <button id="miBoton" class="apple-button">Enviar mensaje</button>
+        <script>
+            document.getElementById("miBoton").addEventListener("click", function() {
+                window.ReactNativeWebView.postMessage("B-23948295 example Bumerang code");
+            });
+        </script>
+        </body>
+        </html>
+`;
+
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   const [showWebView, setShowWebView] = React.useState(false);
@@ -47,11 +108,11 @@ function App(): JSX.Element {
             </View>
             <WebView
               onMessage={event => {
-                console.log(event);
+                console.log(event.nativeEvent.data);
                 setShowWebView(false);
               }}
               source={{
-                uri: 'https://bumerang-webview.ew.r.appspot.com/',
+                html: web,
               }}
               style={styles.webView}
             />
