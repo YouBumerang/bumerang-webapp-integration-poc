@@ -67,7 +67,7 @@ const web = `
         <button id="miBoton" class="apple-button">Enviar mensaje</button>
         <script>
             document.getElementById("miBoton").addEventListener("click", function() {
-                window.ReactNativeWebView. postMessage("B-23948295 example Bumerang code");
+                window.ReactNativeWebView.postMessage("B-23948295 example Bumerang code");
             });
         </script>
         </body>
