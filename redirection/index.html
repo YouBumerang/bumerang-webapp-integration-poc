@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Bumerang webapp redirection test</title>
+    <script>
+      window.onload = () => {
+        console.log("Loaded");
+        document.querySelector("#userid").innerHTML =
+          window.location.search.slice(7);
+        document.querySelector("#button").addEventListener("click", () => {
+          window.location.href = `https://bumerang-webview.ew.r.appspot.com/test?redirection=${
+            document.querySelector("#input").value
+          }`;
+        });
+      };
+    </script>
+  </head>
+  <body>
+    <h1>Bumerang redirection test</h1>
+    <p>User id received from URL: <span id="userid">---</span></p>
+    <label id="redirection">Insert Redirection URL</label>
+    <input type="text" id="input" />
+    <button id="button">Go to WebView</button>
+  </body>
+</html>
