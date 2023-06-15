@@ -5,15 +5,16 @@
         const button = document.querySelector("#button");
         button.addEventListener("click", () => {
           document.querySelector("#title").innerHTML = "Clicked!";
-          window.crossOriginIsolated = true;
-          const origin = document.querySelector("#bumerang");
-          window.origin.postMessage("Mensaje recibido", "*");
+          window.parent.postMessage(
+            JSON.stringify({ event: "userId", value: "B-3E4653" }),
+            "*"
+          );
         });
       };
     </script>
   </head>
   <body>
-    <h1 id="title">Hola</h1>
+    <h1 id="title">Bumerang Iframe</h1>
     <button id="button">Post Message</button>
   </body>
 </html>

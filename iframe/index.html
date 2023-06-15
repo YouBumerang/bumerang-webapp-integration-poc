@@ -11,11 +11,11 @@
       window.addEventListener(
         "message",
         (event) => {
-          console.log("hola");
-          /* if (event.origin !== "https://bumerang-webview.ew.r.appspot.com")
-          return; */
+          if (event.origin !== "https://bumerang-webview.ew.r.appspot.com")
+            return;
           console.log("Message received", event);
-          document.querySelector("#userid").innerText = "23234";
+          const userId = JSON.parse(event.data).value;
+          document.querySelector("#userid").innerText = userId;
         },
         false
       );
@@ -25,7 +25,12 @@
     <h1>Bumerang iframe test</h1>
     <p>User id received from postmessage: <span id="userid">---</span></p>
     <p>
-      <iframe id="bumerang" src="./iframe.html" height="800" width="400" />
+      <iframe
+        id="bumerang"
+        src="https://bumerang-webview.ew.r.appspot.com/test"
+        height="800"
+        width="400"
+      />
     </p>
   </body>
 </html>
