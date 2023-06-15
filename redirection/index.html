@@ -7,25 +7,18 @@
     <script>
       window.onload = () => {
         console.log("Loaded");
+        document.querySelector("#userid").innerHTML =
+          window.location.search.slice(7);
       };
-      window.addEventListener(
-        "message",
-        (event) => {
-          console.log("hola");
-          /* if (event.origin !== "https://bumerang-webview.ew.r.appspot.com")
-          return; */
-          console.log("Message received", event);
-          document.querySelector("#userid").innerText = "23234";
-        },
-        false
-      );
     </script>
   </head>
   <body>
     <h1>Bumerang redirection test</h1>
     <p>User id received from URL: <span id="userid">---</span></p>
-    <p>
-      <iframe id="bumerang" src="./iframe.html" height="800" width="400" />
-    </p>
+    <a
+      href="http://localhost:3000/test?redirection=http://127.0.0.1:5500/redirection/index.html"
+      target="_blank"
+      >Click here to go to Bumerang WebView</a
+    >
   </body>
 </html>
