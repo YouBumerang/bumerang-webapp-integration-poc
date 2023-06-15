@@ -9,16 +9,20 @@
         console.log("Loaded");
         document.querySelector("#userid").innerHTML =
           window.location.search.slice(7);
+        document.querySelector("#button").addEventListener("click", () => {
+          window.location.href = `https://bumerang-webview.ew.r.appspot.com/test?redirection=${
+            document.querySelector("#input").value
+          }`;
+        });
+
       };
     </script>
   </head>
   <body>
     <h1>Bumerang redirection test</h1>
     <p>User id received from URL: <span id="userid">---</span></p>
-    <a
-      href="http://localhost:3000/test?redirection=http://127.0.0.1:5500/redirection/index.html"
-      target="_blank"
-      >Click here to go to Bumerang WebView</a
-    >
+    <label id="redirection">Insert Redirection URL</label>
+    <input type="text" id="input" />
+    <button id="button">Go to WebView</button>
   </body>
 </html>
