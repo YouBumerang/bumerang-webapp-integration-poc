@@ -1,5 +1,6 @@
 package com.example.android_webview;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private WebView webView;
     private Button openButton;
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,24 +27,26 @@ public class MainActivity extends AppCompatActivity {
         webView = findViewById(R.id.webView);
         openButton = findViewById(R.id.openButton);
 
-        openButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openWebView();
-            }
-        });
+        openButton.setOnClickListener(v -> openWebView());
 
         webView.setWebViewClient(new WebViewClient());
         webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setDomStorageEnabled(true);
+        webView.setWebChromeClient(new WebChromeClient());
+        webView.setWebViewClient(new WebViewClient());
         webView.setWebChromeClient(new WebChromeClient());
 
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private void openWebView() {
         webView.setVisibility(View.VISIBLE);
         openButton.setVisibility(View.GONE);
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.addJavascriptInterface(new JavaScriptInterface(), "parent");
+        webView.setWebChromeClient(new WebChromeClient());
+        webView.setWebViewClient(new WebViewClient());
+        webView.getSettings().setDomStorageEnabled(true);
+        webView.addJavascriptInterface(new JavaScriptInterface(), "AndroidInterface");
         webView.loadUrl("http://192.168.1.134:3000/test");
     }
 
