@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         webView.setWebViewClient(new WebViewClient());
         webView.getSettings().setDomStorageEnabled(true);
         webView.addJavascriptInterface(new JavaScriptInterface(), "AndroidInterface");
-        webView.loadUrl("http://192.168.1.134:3000/test");
+        webView.loadUrl("https://bumerang-webview.ew.r.appspot.com/test");
     }
 
     private class JavaScriptInterface {
