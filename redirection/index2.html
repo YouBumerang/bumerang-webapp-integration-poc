@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Bumerang webapp redirection test</title>
+    <script>
+      window.onload = () => {
+        console.log("Loaded");
+
+        const value = window.location.search.substr(1).replace('value=', '')
+        if(value) {
+          document.querySelector("#userid").innerHTML = value;
+        } else {
+          document.querySelector("#userid").innerHTML = '---';
+        }
+        
+        document.querySelector("#button").addEventListener("click", () => {
+          const uri = window.location.href
+          window.location.href = `https://bumerang-webview.ew.r.appspot.com/test?redirection=${uri}`;
+        });
+      };
+    </script>
+  </head>
+  <body>
+    <h1>Bumerang redirection test</h1>
+    <p>User id received from URL params: <span id="userid">---</span></p>
+    
+    <button id="button">Go to bumerang Webapp</button>
+  </body>
+</html>
